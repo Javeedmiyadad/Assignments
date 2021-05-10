@@ -1,0 +1,35 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { EmployeeServiceService } from '../employee-service.service';
+import { Employee } from '../models/Employee';
+
+@Component({
+  selector: 'app-create-employee',
+  templateUrl: './create-employee.component.html',
+  styleUrls: ['./create-employee.component.css']
+})
+export class CreateEmployeeComponent{
+
+  employee:Employee=new Employee;
+  constructor(private employeeService: EmployeeServiceService,
+    private router: Router) { }
+
+
+  saveEmployee(){
+    this.employeeService.createEmployee(this.employee).subscribe( data =>{
+      console.log(data);
+      this.goToEmployeesList();
+    },
+    error => console.log(error));
+  }
+
+  goToEmployeesList(){
+    this.router.navigate(['/employee']);
+  }
+  
+  onSubmit(){
+    console.log(this.employee);
+    this.saveEmployee();
+  }
+}
+

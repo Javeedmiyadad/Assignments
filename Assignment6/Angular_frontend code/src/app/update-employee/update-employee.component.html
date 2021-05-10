@@ -1,0 +1,32 @@
+<div class="container">
+    <h3>Create Employee</h3>
+    <!-- <div [hidden]="submitted" style="width: 400px;"> -->
+
+    <form #addEmployee="ngForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label> Id </label>
+            <input type="text" class="form-control" id="id" [(ngModel)]="employee.id" name="id">
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" #name="ngModel" id="name" required [(ngModel)]="employee.name"
+                name="name" [class.is-invalid]="name.invalid && name.touched" class="form-control" required />
+            <small class="text-danger" [class.d-none]="name.untouched || name.valid">This is require
+                field</small>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Email Id</label>
+            <input type="text" class="form-control" #email="ngModel" id="email" required [(ngModel)]="employee.email"
+                name="email" [class.is-invalid]="email.invalid && email.touched" class="form-control" required />
+            <small class="text-danger" [class.d-none]="email.untouched || email.valid">This is require
+                field</small>
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="!addEmployee.valid">Submit</button>
+    </form>
+</div>
+
+<!-- <div [hidden]="!submitted">
+    <h4>You submitted successfully!</h4>
+</div> -->
