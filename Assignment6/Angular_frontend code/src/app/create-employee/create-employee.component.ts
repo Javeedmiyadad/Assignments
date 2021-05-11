@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeServiceService } from '../employee-service.service';
 import { Employee } from '../models/Employee';
 
@@ -8,11 +8,18 @@ import { Employee } from '../models/Employee';
   templateUrl: './create-employee.component.html',
   styleUrls: ['./create-employee.component.css']
 })
-export class CreateEmployeeComponent{
+export class CreateEmployeeComponent implements OnInit{
 
-  employee:Employee=new Employee;
+   employee:Employee=new Employee;
+  
+
   constructor(private employeeService: EmployeeServiceService,
+    private route: ActivatedRoute,
     private router: Router) { }
+
+  ngOnInit(): void {
+    
+  }
 
 
   saveEmployee(){
@@ -31,5 +38,9 @@ export class CreateEmployeeComponent{
     console.log(this.employee);
     this.saveEmployee();
   }
+  // onSubmit(){
+  //   this.employeeService.createEmployee(this.employee).subscribe( result =>
+  //     this.goToEmployeesList());
+  // }
 }
 
